@@ -1,7 +1,13 @@
 package com.abgdev1997.candidateFilter.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "app_users_admin")
 public class UsersAdmin {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String userName;
     String name;
