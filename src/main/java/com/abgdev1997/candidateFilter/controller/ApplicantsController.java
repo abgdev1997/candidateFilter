@@ -30,7 +30,7 @@ public class ApplicantsController {
         return ResponseEntity.ok().body(list);
     }
 
-    @PostMapping("/addApplicant")
+    @PostMapping("/add")
     public ResponseEntity<MessageDTO> addApplicant(ApplicantDTO applicantRequest, MultipartFile image, MultipartFile pdf) throws IOException {
         ArrayList<String> imageArray = cloudinaryService.upload(image);
         ArrayList<String> pdfArray = cloudinaryService.upload(pdf);
@@ -55,7 +55,7 @@ public class ApplicantsController {
         return ResponseEntity.ok(new MessageDTO("Applicant save successfully!"));
     }
 
-    @DeleteMapping("/deleteApplicant/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<MessageDTO> deleteApplicant(@PathVariable("id") Long id) throws IOException {
         Optional<Applicants> applicant = applicantsRepository.findById(id);
         if(applicant.isPresent()) {
@@ -68,7 +68,7 @@ public class ApplicantsController {
         return ResponseEntity.notFound().build();
     }
 
-    @PutMapping("/modifyApplicant")
+    @PutMapping("/modify")
     public ResponseEntity<MessageDTO> modifyApplicant(ApplicantDTO applicantRequest){
         Optional<Applicants> applicant = applicantsRepository.findById(applicantRequest.getId());
         if(applicant.isPresent()){
