@@ -8,11 +8,11 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String userName;
-    String name;
-    String enterpriseEmail;
-    String password;
+    private Long id;
+    private String userName;
+    private String name;
+    private String enterpriseEmail;
+    private String password;
 
     public User() {
     }

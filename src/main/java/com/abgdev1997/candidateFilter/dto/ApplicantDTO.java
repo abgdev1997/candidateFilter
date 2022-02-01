@@ -1,14 +1,9 @@
-package com.abgdev1997.candidateFilter.models;
+package com.abgdev1997.candidateFilter.dto;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 
-@Entity
-@Table(name = "app_applicants")
-public class Applicants {
+public class ApplicantDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String country;
@@ -17,16 +12,12 @@ public class Applicants {
     private String email;
     private String presence;
     private Boolean relocation;
-    private String image;
-    private String imageId;
-    private String pdf;
-    private String pdfId;
-    private ArrayList<String> technologies = new ArrayList<>();
+    private ArrayList<String> technologies;
 
-    public Applicants() {
+    public ApplicantDTO() {
     }
 
-    public Applicants(Long id, String name, String country, String city, String phone, String email, String presence, Boolean relocation, String image, String imageId, String pdf, String pdfId, ArrayList<String> technologies) {
+    public ApplicantDTO(Long id, String name, String country, String city, String phone, String email, String presence, Boolean relocation, ArrayList<String> technologies) {
         this.id = id;
         this.name = name;
         this.country = country;
@@ -35,10 +26,6 @@ public class Applicants {
         this.email = email;
         this.presence = presence;
         this.relocation = relocation;
-        this.image = image;
-        this.imageId = imageId;
-        this.pdf = pdf;
-        this.pdfId = pdfId;
         this.technologies = technologies;
     }
 
@@ -106,43 +93,11 @@ public class Applicants {
         this.relocation = relocation;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getPdf() {
-        return pdf;
-    }
-
-    public void setPdf(String pdf) {
-        this.pdf = pdf;
-    }
-
     public ArrayList<String> getTechnologies() {
         return technologies;
     }
 
     public void setTechnologies(ArrayList<String> technologies) {
         this.technologies = technologies;
-    }
-
-    public String getImageId() {
-        return imageId;
-    }
-
-    public void setImageId(String imageId) {
-        this.imageId = imageId;
-    }
-
-    public String getPdfId() {
-        return pdfId;
-    }
-
-    public void setPdfId(String pdfId) {
-        this.pdfId = pdfId;
     }
 }

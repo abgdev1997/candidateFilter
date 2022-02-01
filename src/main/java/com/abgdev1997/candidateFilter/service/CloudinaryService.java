@@ -48,16 +48,18 @@ public class CloudinaryService {
         cloudinary = new Cloudinary(valuesMap);
     }
 
+
+
     public ArrayList<String> upload(MultipartFile multipartFile) throws IOException {
         File file = convert(multipartFile);
         Map<?,?> result = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
         file.delete();
 
-        ArrayList<String> imageData = new ArrayList<>();
-        imageData.add((String) result.get("public_id"));
-        imageData.add((String) result.get("url"));
+        ArrayList<String> data = new ArrayList<>();
+        data.add((String) result.get("public_id"));
+        data.add((String) result.get("url"));
 
-        return imageData;
+        return data;
     }
 
     public void delete(String id) throws IOException {
