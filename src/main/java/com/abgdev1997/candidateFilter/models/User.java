@@ -1,22 +1,30 @@
 package com.abgdev1997.candidateFilter.models;
 
-public class UsersAdmin {
+import javax.persistence.*;
 
-    Long id;
-    String userName;
-    String name;
-    String enterpriseEmail;
-    String password;
+@Entity
+@Table(name = "app_users_admin")
+public class User {
 
-    public UsersAdmin() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String userName;
+    private String name;
+    private String enterpriseEmail;
+    private String password;
+
+    public User() {
     }
 
-    public UsersAdmin(String enterpriseEmail, String password) {
+
+
+    public User(String enterpriseEmail, String password) {
         this.enterpriseEmail = enterpriseEmail;
         this.password = password;
     }
 
-    public UsersAdmin(Long id, String userName, String name, String enterpriseEmail, String password) {
+    public User(Long id, String userName, String name, String enterpriseEmail, String password) {
         this.id = id;
         this.userName = userName;
         this.name = name;
