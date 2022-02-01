@@ -20,13 +20,14 @@ public class Applicants {
     String presence;
     Boolean relocation;
     String image;
+    String imageId;
     String pdf;
     ArrayList<?> technologies = new ArrayList<>();
 
     public Applicants() {
     }
 
-    public Applicants(Long id, String name, String country, String city, String phone, String email, String presence, Boolean relocation, String image, String pdf, ArrayList<?> technologies) {
+    public Applicants(Long id, String name, String country, String city, String phone, String email, String presence, Boolean relocation, String image, String imageId, String pdf, ArrayList<?> technologies) {
         this.id = id;
         this.name = name;
         this.country = country;
@@ -36,6 +37,7 @@ public class Applicants {
         this.presence = presence;
         this.relocation = relocation;
         this.image = image;
+        this.imageId = imageId;
         this.pdf = pdf;
         this.technologies = technologies;
     }
@@ -126,5 +128,13 @@ public class Applicants {
 
     public void setTechnologies(ArrayList<?> technologies) {
         this.technologies = technologies;
+    }
+
+    public String getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(String imageId) {
+        this.imageId = imageId;
     }
 }
