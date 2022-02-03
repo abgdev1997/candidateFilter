@@ -1,6 +1,7 @@
 package com.abgdev1997.candidateFilter.controller;
 
 import com.abgdev1997.candidateFilter.dto.ApplicantDTO;
+import com.abgdev1997.candidateFilter.dto.FilterDTO;
 import com.abgdev1997.candidateFilter.dto.MessageDTO;
 import com.abgdev1997.candidateFilter.models.Applicants;
 import com.abgdev1997.candidateFilter.repository.ApplicantsRepository;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +30,48 @@ public class ApplicantsController {
     public ResponseEntity<List<Applicants>> list(){
         List<Applicants> list = applicantsRepository.findAll();
         return ResponseEntity.ok().body(list);
+    }
+
+    @GetMapping("/filter")
+    public ResponseEntity<List<Applicants>> filter(FilterDTO filterRequest){
+
+        List<Applicants> allCandidates = applicantsRepository.findAll();
+        boolean cVar = false;
+
+        if(!(filterRequest.getTechnologies().size() == 0)){
+            for(int i = 0; i < filterRequest.getTechnologies().size(); i++){
+                for (Applicants applicant : allCandidates){
+                    for(int j = 0; j < applicant.getTechnologies().size(); j++){
+                        if (applicant.getTechnologies().get(j).equals(filterRequest.getTechnologies().get(i))) {
+                            cVar = true;
+                            break;
+                        }
+                        if(!cVar){
+                            allCandidates.remove(applicant);
+                        }
+                        cVar = false;
+                    }
+                }
+            }
+        }
+
+        if(!(filterRequest.getCountry() == null)){
+            allCandidates.removeIf(applicant -> !applicant.getCountry().equals(filterRequest.getCountry()));
+        }
+
+        if(!(filterRequest.getCity() == null)){
+            allCandidates.removeIf(applicant -> !applicant.getCity().equals(filterRequest.getCity()));
+        }
+
+        if(!(filterRequest.getPresence() == null)){
+            allCandidates.removeIf(applicant -> !applicant.getPresence().equals(filterRequest.getPresence()));
+        }
+
+        if(!(filterRequest.getRelocation() == null)){
+            allCandidates.removeIf(applicant -> !applicant.getRelocation().equals(filterRequest.getRelocation()));
+        }
+
+        return ResponseEntity.ok().body(allCandidates);
     }
 
     @PostMapping("/add")
